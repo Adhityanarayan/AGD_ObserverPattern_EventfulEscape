@@ -9,11 +9,11 @@ public class LightSwitchView : MonoBehaviour, IInteractable
     private void Start() => currentState = SwitchState.Off;
 
     public delegate void LightSwitchDelegate();
-    public LightSwitchDelegate lightToggled;
+    public static LightSwitchDelegate lightToggled;
 
     private void OnEnable()
     {
-        lightToggled = OnLightSwitchToggles;
+        lightToggled += OnLightSwitchToggles;
         lightToggled += OnLightSwitchInstructions;
     }
 
@@ -52,6 +52,7 @@ public class LightSwitchView : MonoBehaviour, IInteractable
     }
     private void OnLightSwitchInstructions()
     {
+        Debug.Log("LightSwitchView -> OnLightSwitchInstructions");
         GameService.Instance.GetInstructionView().HideInstruction();
     }
 }
