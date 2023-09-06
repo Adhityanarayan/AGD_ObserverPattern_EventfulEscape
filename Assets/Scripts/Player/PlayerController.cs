@@ -80,6 +80,7 @@ public class PlayerController
 
     private void onLightSwitch()
     {
+        GameService.Instance.GetSoundView().PlaySoundEffects(SoundType.SwitchSound);
         if (PlayerState == PlayerState.InDark)
             PlayerState = PlayerState.None;
         else
