@@ -25,13 +25,13 @@ public class PlayerController
 
         this.playerScriptableObject = playerScriptableObject;
         this.playerScriptableObject.KeysEquipped = 0;
-        LightSwitchView.lightToggled += onLightSwitch;
+        LightSwitchView.OnLightSwitchToggled += onLightSwitch;
         playerState = PlayerState.InDark;
     }
 
     ~PlayerController()
     {
-        LightSwitchView.lightToggled -= onLightSwitch;
+        LightSwitchView.OnLightSwitchToggled -= onLightSwitch;
     }
     public void Interact() => IsInteracted = Input.GetKeyDown(KeyCode.E) ? true : (Input.GetKeyUp(KeyCode.E) ? false : IsInteracted);
 
@@ -80,7 +80,7 @@ public class PlayerController
 
     private void onLightSwitch()
     {
-        GameService.Instance.GetSoundView().PlaySoundEffects(SoundType.SwitchSound);
+        //GameService.Instance.GetSoundView().PlaySoundEffects(SoundType.SwitchSound);
         if (PlayerState == PlayerState.InDark)
             PlayerState = PlayerState.None;
         else
